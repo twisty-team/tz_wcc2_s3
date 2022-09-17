@@ -14,28 +14,32 @@ default
 will return first page
 ```sh
 {
-  exchanges(page:1) {
-      count
-    	currentPage
-    	totalPages
-      next
-      prev
-      results {
+  exchanges(page:1) 
+  {
+    count
+    currentPage
+    totalPages
+    next
+    prev
+    results 
+    {
         id
         toyToChange
         desiredToy
         active
-        owner {
+        owner 
+	{
           id
           name
           contact
         }
-        pictures {
+    	pictures
+	{
           id
           imageUrl
         }
-  	}
-	}
+     }
+  }
 }
 ```
 ##Query response
