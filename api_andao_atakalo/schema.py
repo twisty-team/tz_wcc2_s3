@@ -32,16 +32,12 @@ class PictureType(DjangoObjectType):
 class Query(graphene.ObjectType):
     exchanges = graphene.List(ExchangeType)
 
-    def resolve_owners(root, info, **kwargs):
-        # Querying a list
-        return Owner.objects.all()
+    
 
     def resolve_exchanges(root, info, **kwargs):
         # Querying a list
         return Exchange.objects.all()
 
-    def resolve_pictures(root, info, **kwargs):
-        # Querying a list
-        return Picture.objects.all()
+
 
 schema = graphene.Schema(query=Query)
