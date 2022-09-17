@@ -13,11 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import re_path, include
+from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 
+#graphql
+from graphene_django.views import GraphQLView
+from django.views.decorators.csrf import csrf_exempt
+from api_andao_atakalo.schema import schema
+
 
 urlpatterns = [
-    re_path('api/', include('api_andao_atakalo.urls'))
+    path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema))),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
