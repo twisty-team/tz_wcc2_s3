@@ -24,5 +24,5 @@ from api_andao_atakalo.schema import schema
 
 
 urlpatterns = [
-    path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema))),
+    path("exchanges", csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema))),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
