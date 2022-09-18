@@ -2,74 +2,80 @@
 TechZara WCC 2nd edition semaine 3
 
 ## Query form
-change page value to change page 
-default 
+Query should has this form to return result needed  
+you can change page value to change result page  
+if page is not specify, query by default return first page of result  
 ```sh
 {
-    exchanges {
-        ...
-    }
-}
-```
-will return first page
-```sh
-{
-  exchanges(page:1) 
+  paginatedExchanges(page: 1)
   {
     count
+    pageSize
     currentPage
     totalPages
-    next
-    prev
-    results 
+    hasNext
+    hasPrev
+    exchanges
     {
+      id
+      toyToChange
+      desiredToy
+      active
+      owner 
+      {
         id
-        toyToChange
-        desiredToy
-        active
-        owner 
-	{
-          id
-          name
-          contact
-        }
-    	pictures
-	{
-          id
-          imageUrl
-        }
-     }
+        name
+        contact
+      }
+      pictures
+      {
+        id
+        imageUrl
+      }
+  	}
   }
 }
 ```
-##Query response
+You can specify pageSize to configure exchange per page  
+you should add parameter to the query like this  
+```sh
+{
+  paginatedExchanges(pageSize:2 page: 1)
+  {
+      ........
+  }
+}
+```
+## Query response
+Query json response will have this form
 ```json
 {
   "data": {
-    "exchanges": {
-      "count": 21,
+    "paginatedExchanges": {
+      "count": 20,
+      "pageSize": 10,
       "currentPage": 1,
-      "totalPages": 3,
-      "next": "http://127.0.0.1:8000/graphql#query={exchanges(page:2){count currentPage totalPages next prev results{id toyToChange desiredToy active owner{id name contact} pictures{id imageUrl}}}}",
-      "prev": null,
-      "results": [
-			{
-			  "id": "21",
-			  "toyToChange": "fqqdfdq",
-			  "desiredToy": "fdqfdqf",
-			  "active": true,
-			  "owner": {
-			    "id": "2",
-			    "name": "jose",
-			    "contact": "+261332514778"
-			  },
-			  "pictures": []
-			},
-			{
-			  "...": "..."
-			}
-		]
-    		}
-  	}
+      "totalPages": 2,
+      "hasNext": true,
+      "hasPrev": false,
+      "exchanges": [
+        {
+          "id": "20",
+          "toyToChange": "test",
+          "desiredToy": "test",
+          "active": true,
+          "owner": {
+            "id": "1",
+            "name": "owner1",
+            "contact": "+261324711525"
+          },
+          "pictures": []
+        },
+        {
+          "...": "..."
+        }
+      ]
+    }
+  }
 }
 ```
