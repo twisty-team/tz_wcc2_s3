@@ -24,12 +24,18 @@ a host and a port as following :
 ```sh
 python3 manage.py runserver 0.0.0.0:3000
 ```
+Open a browser at [127.0.0.1:8000/graphql](127.0.0.1:8000/graphql)(graphiql) or use Postman to test the API.
 
-## Test
-
-You can manually test the API at the base url provided below us
 
 ## API reference
+
+### Endpoints
+All queries are made at [localhost:8000/graphql](http://localhost:8000/graphql) using `POST` for mutation and `GET` for simple query.
+
+### Queries 
+- createExchange()
+- deactivateExchange(`id`)
+- paginatedExchange(`page`, `pageSize`)
 ## Query form
 Query should has this form to return result needed  
 you can change page value to change result page  
