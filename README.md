@@ -1,6 +1,35 @@
-# tz_wcc2_s3
-TechZara WCC 2nd edition semaine 3
+# Ndao atakalo
+TechZara WCC 2nd edition week 3
 
+A GraphQL API that allow people to exchange their toys
+
+## Prerequisites
+You'll need python 3 in order to run the project.
+To install the dependencies, run (preferably in a virtual environment):
+```sh
+pip3 install -r requirements.txt
+```
+
+## How to run
+Before the first run, you'll need to setup the database.
+```sh
+python3 manage.py migrate
+```
+Then, run the project by typing in the terminal :
+``` sh
+python3 manage.py runserver
+```
+The server will be launch on 127.0.0.1:8000 by default but you can specify
+a host and a port as following :
+```sh
+python3 manage.py runserver 0.0.0.0:3000
+```
+
+## Test
+
+You can manually test the API at the base url provided below us
+
+## API reference
 ## Query form
 Query should has this form to return result needed  
 you can change page value to change result page  
@@ -79,3 +108,9 @@ Query json response will have this form
   }
 }
 ```
+
+## Authors
+
+* [tbgracy](https://github.com/tbgracy)
+
+* [rhja](https://github.com/radoheritiana)
