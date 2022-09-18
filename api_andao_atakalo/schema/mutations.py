@@ -3,7 +3,7 @@ from graphene_django import DjangoObjectType
 from graphene_file_upload.scalars import Upload
 
 from ..types import ExchangeType, PictureType, OwnerType
-from ..models import Exchange, Owner
+from ..models import Exchange, Owner, Picture
 
 
 class CreateExchangeMutation(graphene.Mutation):
@@ -12,22 +12,22 @@ class CreateExchangeMutation(graphene.Mutation):
         contact = graphene.String()
         toy_to_change = graphene.String()
         desired_toy = graphene.String()
-        pictures = graphene.List(Upload)
+        # pictures = Upload
 
     exchange = graphene.Field(ExchangeType)
     success = graphene.Boolean()
 
-    def mutate(self, info, user_name, contact, toy_to_change, desired_toy, pictures):
+    def mutate(self, info, user_name, contact, toy_to_change, desired_toy):
         owner = Owner.objects.create(name=user_name, contact=contact)
         exchange = Exchange.objects.create(
             owner=owner,
             toy_to_change=toy_to_change,
             desired_toy=desired_toy,
-            # pictures=pictures
         )
-        print(type(pictures))
-        for picture in pictures:
-            pass
+        files = info.context.FILES.getlist("0")
+        for file in files:
+            picture = Picture(exchange=exchange, image_url=file)
+            picture.save()
         return CreateExchangeMutation(exchange=exchange)
 
 
