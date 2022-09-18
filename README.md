@@ -32,14 +32,21 @@ Open a browser at [127.0.0.1:8000/graphql](127.0.0.1:8000/graphql)(graphiql) or 
 ### Endpoints
 All queries are made at [localhost:8000/graphql](http://localhost:8000/graphql) using `POST` for mutation and `GET` for simple query.
 
+### Authentication
+There is actually no authentication/authorization implemented.
+
+### Errors
+Errors are returned following the GraphQL spec.
+
 ### Queries 
-- createExchange()
+- createExchange(`usserName`, `contact`, `desiredToy`, `toyToChange`)
 - deactivateExchange(`id`)
 - paginatedExchange(`page`, `pageSize`)
+
 ## Query form
 Query should has this form to return result needed  
 you can change page value to change result page  
-if page is not specify, query by default return first page of result  
+if page is not specified, query by default return first page of result  
 ```sh
 {
   paginatedExchanges(page: 1)
