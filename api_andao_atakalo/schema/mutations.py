@@ -12,7 +12,7 @@ class CreateExchangeMutation(graphene.Mutation):
         contact = graphene.String()
         toy_to_change = graphene.String()
         desired_toy = graphene.String()
-        pictures = Upload(required=True)
+        pictures = graphene.List(Upload)
 
     exchange = graphene.Field(ExchangeType)
     success = graphene.Boolean()
@@ -25,8 +25,9 @@ class CreateExchangeMutation(graphene.Mutation):
             desired_toy=desired_toy,
             # pictures=pictures
         )
-        # TODO : File upload
-        # exchange.pictures = pictures.set()
+        print(type(pictures))
+        for picture in pictures:
+            pass
         return CreateExchangeMutation(exchange=exchange)
 
 
